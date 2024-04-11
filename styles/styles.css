@@ -50,14 +50,14 @@ button {
   transition: all 1s ease;
 }
 
-#slider-container #button-container {
+#slider-container #dot-container {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
   margin-top: 0.5rem;
 }
 
-#slider-container #button-container button {
+#slider-container #dot-container button {
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
@@ -65,7 +65,7 @@ button {
   background-color: grey;
 }
 
-#slider-container #button-container button:first-child {
+#slider-container #dot-container button:first-child {
   background-color: #017aff;
 }
 
@@ -91,12 +91,12 @@ button {
     width: 6rem;
   }
 
-  #slider-container #button-container {
+  #slider-container #dot-container {
     gap: 1rem;
     margin-top: 1rem;
   }
 
-  #slider-container #button-container button {
+  #slider-container #dot-container button {
     width: 1.5rem;
     height: 1.5rem;
   }
@@ -125,11 +125,11 @@ button {
     width: 2rem;
   }
 
-  #slider-container #button-container {
+  #slider-container #dot-container {
     gap: 0.3rem;
   }
 
-  #slider-container #button-container button {
+  #slider-container #dot-container button {
     width: 0.5rem;
     height: 0.5rem;
   }

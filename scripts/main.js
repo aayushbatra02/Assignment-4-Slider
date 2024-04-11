@@ -2,16 +2,16 @@ const slider = document.getElementById("slider");
 const leftArrow = document.getElementById("left-arrow");
 const rightArrow = document.getElementById("right-arrow");
 const images = document.querySelectorAll(".image");
-const buttonContainer = document.getElementById("button-container");
+const dotContainer = document.getElementById("dot-container");
 
 //create buttons
 for (let i = 0; i < images.length; i++) {
   const button = document.createElement("button");
-  button.classList.add("button");
-  buttonContainer.appendChild(button);
+  button.classList.add("dot-button");
+  dotContainer.appendChild(button);
 }
 
-const sliderButtons = document.querySelectorAll(".button");
+const sliderButtons = document.querySelectorAll(".dot-button");
 
 const sliderWidth = slider.offsetWidth;
 let imageNumber = 1;
