@@ -20,7 +20,7 @@ rightArrow.addEventListener("click", () => {
   if (imageNumber < images.length) {
     slider.style.transform = `translateX(-${sliderWidth * imageNumber}px)`;
     imageNumber++;
-    disableArrowButton();
+    changeArrowButton();
     changeActiveButton();
   }
 });
@@ -31,12 +31,12 @@ leftArrow.addEventListener("click", () => {
       sliderWidth * (imageNumber - 2)
     }px)`;
     imageNumber--;
-    disableArrowButton();
+    changeArrowButton();
     changeActiveButton();
   }
 });
 
-const disableArrowButton = () => {
+const changeArrowButton = () => {
   if (imageNumber === images.length) {
     rightArrow.style.opacity = 0.3;
   } else {
@@ -67,12 +67,12 @@ const startSlider = () => {
     if (imageNumber < images.length) {
       slider.style.transform = `translateX(-${sliderWidth * imageNumber}px)`;
       imageNumber++;
-      disableArrowButton();
+      changeArrowButton();
       changeActiveButton();
     } else {
       slider.style.transform = `translateX(0px)`;
       imageNumber = 1;
-      disableArrowButton();
+      changeArrowButton();
       changeActiveButton();
     }
   }, 3000);
@@ -95,7 +95,7 @@ sliderButtons.forEach((button, i) => {
   button.addEventListener("click", () => {
     slider.style.transform = `translateX(-${sliderWidth * i}px)`;
     imageNumber = i + 1;
-    disableArrowButton();
+    changeArrowButton();
     changeActiveButton();
   });
   button.addEventListener("mouseover", stopSlider);
