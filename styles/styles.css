@@ -36,16 +36,16 @@ button {
   z-index: 1;
 }
 
-#slider-container #slider-frame #left-arrow {
+#slider-container #slider-frame #left-arrow-button {
   left: 0;
   opacity: 0.3;
 }
 
-#slider-container #slider-frame #right-arrow {
+#slider-container #slider-frame #right-arrow-button {
   right: 0;
 }
 
-#slider-container #slider-frame #slider {
+#slider-container #slider-frame #image-slider {
   display: flex;
   transition: all 1s ease;
 }

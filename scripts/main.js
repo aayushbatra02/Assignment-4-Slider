@@ -1,6 +1,6 @@
-const slider = document.getElementById("slider");
-const leftArrow = document.getElementById("left-arrow");
-const rightArrow = document.getElementById("right-arrow");
+const imageSlider = document.getElementById("image-slider");
+const leftArrowButton = document.getElementById("left-arrow-button");
+const rightArrowButton = document.getElementById("right-arrow-button");
 const images = document.querySelectorAll(".image");
 const dotContainer = document.getElementById("dot-container");
 
@@ -11,47 +11,47 @@ for (let i = 0; i < images.length; i++) {
   dotContainer.appendChild(button);
 }
 
-const sliderButtons = document.querySelectorAll(".dot-button");
+const dotButtons = document.querySelectorAll(".dot-button");
 
-const sliderWidth = slider.offsetWidth;
+const imageSliderWidth = imageSlider.offsetWidth;
 let imageNumber = 1;
 
-rightArrow.addEventListener("click", () => {
+rightArrowButton.addEventListener("click", () => {
   if (imageNumber < images.length) {
-    slider.style.transform = `translateX(-${sliderWidth * imageNumber}px)`;
+    imageSlider.style.transform = `translateX(-${imageSliderWidth * imageNumber}px)`;
     imageNumber++;
-    changeArrowButton();
-    changeActiveButton();
+    changeArrowOpacity();
+    changeActiveDotButton();
   }
 });
 
-leftArrow.addEventListener("click", () => {
+leftArrowButton.addEventListener("click", () => {
   if (imageNumber > 1) {
-    slider.style.transform = `translateX(-${
-      sliderWidth * (imageNumber - 2)
+    imageSlider.style.transform = `translateX(-${
+      imageSliderWidth * (imageNumber - 2)
     }px)`;
     imageNumber--;
-    changeArrowButton();
-    changeActiveButton();
+    changeArrowOpacity();
+    changeActiveDotButton();
   }
 });
 
-const changeArrowButton = () => {
+const changeArrowOpacity = () => {
   if (imageNumber === images.length) {
-    rightArrow.style.opacity = 0.3;
+    rightArrowButton.style.opacity = 0.3;
   } else {
-    rightArrow.style.opacity = 1;
+    rightArrowButton.style.opacity = 1;
   }
 
   if (imageNumber === 1) {
-    leftArrow.style.opacity = 0.3;
+    leftArrowButton.style.opacity = 0.3;
   } else {
-    leftArrow.style.opacity = 1;
+    leftArrowButton.style.opacity = 1;
   }
 };
 
-const changeActiveButton = () => {
-  sliderButtons.forEach((button, i) => {
+const changeActiveDotButton = () => {
+  dotButtons.forEach((button, i) => {
     if (i === imageNumber - 1) {
       button.style.backgroundColor = "#017AFF";
     } else {
@@ -65,15 +65,15 @@ let sliderInterval;
 const startSlider = () => {
   sliderInterval = setInterval(() => {
     if (imageNumber < images.length) {
-      slider.style.transform = `translateX(-${sliderWidth * imageNumber}px)`;
+      imageSlider.style.transform = `translateX(-${imageSliderWidth * imageNumber}px)`;
       imageNumber++;
-      changeArrowButton();
-      changeActiveButton();
+      changeArrowOpacity();
+      changeActiveDotButton();
     } else {
-      slider.style.transform = `translateX(0px)`;
+      imageSlider.style.transform = `translateX(0px)`;
       imageNumber = 1;
-      changeArrowButton();
-      changeActiveButton();
+      changeArrowOpacity();
+      changeActiveDotButton();
     }
   }, 3000);
 };
@@ -84,19 +84,19 @@ const stopSlider = () => {
   clearInterval(sliderInterval);
 };
 
-slider.addEventListener("mouseover", stopSlider);
-slider.addEventListener("mouseout", startSlider);
-rightArrow.addEventListener("mouseover", stopSlider);
-rightArrow.addEventListener("mouseout", startSlider);
-leftArrow.addEventListener("mouseover", stopSlider);
-leftArrow.addEventListener("mouseout", startSlider);
+imageSlider.addEventListener("mouseover", stopSlider);
+imageSlider.addEventListener("mouseout", startSlider);
+rightArrowButton.addEventListener("mouseover", stopSlider);
+rightArrowButton.addEventListener("mouseout", startSlider);
+leftArrowButton.addEventListener("mouseover", stopSlider);
+leftArrowButton.addEventListener("mouseout", startSlider);
 
-sliderButtons.forEach((button, i) => {
+dotButtons.forEach((button, i) => {
   button.addEventListener("click", () => {
-    slider.style.transform = `translateX(-${sliderWidth * i}px)`;
+    imageSlider.style.transform = `translateX(-${imageSliderWidth * i}px)`;
     imageNumber = i + 1;
-    changeArrowButton();
-    changeActiveButton();
+    changeArrowOpacity();
+    changeActiveDotButton();
   });
   button.addEventListener("mouseover", stopSlider);
   button.addEventListener("mouseout", startSlider);
