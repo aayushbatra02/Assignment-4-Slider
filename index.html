@@ -3,76 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS Slider</title>
+    <title>Document</title>
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
     <div id="slider-container">
-      <div id="frame">
-        <div id="container-s2">
-          <button id="left-arrow" class="disable">
-            <img src="/images/icons/left-arrow.png" alt="Left Arrow" />
-          </button>
-          <div id="slider-images">
-            <img
-              id="image"
-              src="./images/slider/image-0.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-1.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-2.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-3.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-4.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-5.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-6.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-7.jpg"
-              alt="Slider Image"
-            />
-            <img
-              id="image"
-              src="./images/slider/image-8.jpg"
-              alt="Slider Image"
-            />
-          </div>
-          <button id="right-arrow">
-            <img src="./images/icons/right-arrow.png" alt="Right Arrow" />
-          </button>
+      <div id="slider-frame">
+        <button id="left-arrow">
+          <img src="/images/icons/left-arrow.png" />
+        </button>
+        <div id="slider">
+          <img src="/images/slider/image-0.jpg" class="image" />
+          <img src="/images/slider/image-1.jpg" class="image" />
+          <img src="/images/slider/image-2.jpg" class="image" />
+          <img src="/images/slider/image-3.jpg" class="image" />
+          <img src="/images/slider/image-4.jpg" class="image" />
+          <img src="/images/slider/image-5.jpg" class="image" />
+          <img src="/images/slider/image-6.jpg" class="image" />
+          <img src="/images/slider/image-7.jpg" class="image" />
+          <img src="/images/slider/image-8.jpg" class="image" />
         </div>
+        <button id="right-arrow">
+          <img src="/images/icons/right-arrow.png" />
+        </button>
       </div>
-      <div id="buttons">
-        <button class="nav-btn active"></button><button class="nav-btn"></button
-        ><button class="nav-btn"></button><button class="nav-btn"></button
-        ><button class="nav-btn"></button><button class="nav-btn"></button
-        ><button class="nav-btn"></button><button class="nav-btn"></button
-        ><button class="nav-btn"></button>
+      <div id="button-container">
+        <button class="button"></button><button class="button"></button
+        ><button class="button"></button><button class="button"></button
+        ><button class="button"></button><button class="button"></button
+        ><button class="button"></button><button class="button"></button
+        ><button class="button"></button>
       </div>
-      <!-- Auto Slide ON OFF Slide Time 2s 5s 10s -->
     </div>
     <script src="./scripts/main.js"></script>
   </body>
