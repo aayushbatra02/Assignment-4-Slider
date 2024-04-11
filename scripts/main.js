@@ -2,7 +2,16 @@ const slider = document.getElementById("slider");
 const leftArrow = document.getElementById("left-arrow");
 const rightArrow = document.getElementById("right-arrow");
 const images = document.querySelectorAll(".image");
-const buttons = document.querySelectorAll(".button");
+const buttonContainer = document.getElementById("button-container");
+
+//create buttons
+for (let i = 0; i < images.length; i++) {
+  const button = document.createElement("button");
+  button.classList.add("button");
+  buttonContainer.appendChild(button);
+}
+
+const sliderButtons = document.querySelectorAll(".button");
 
 const sliderWidth = slider.offsetWidth;
 let imageNumber = 1;
@@ -28,7 +37,7 @@ leftArrow.addEventListener("click", () => {
 });
 
 const disableArrowButton = () => {
-  if (imageNumber === 9) {
+  if (imageNumber === images.length) {
     rightArrow.style.opacity = 0.3;
   } else {
     rightArrow.style.opacity = 1;
@@ -42,7 +51,7 @@ const disableArrowButton = () => {
 };
 
 const changeActiveButton = () => {
-  buttons.forEach((button, i) => {
+  sliderButtons.forEach((button, i) => {
     if (i === imageNumber - 1) {
       button.style.backgroundColor = "#017AFF";
     } else {
@@ -82,7 +91,7 @@ rightArrow.addEventListener("mouseout", startSlider);
 leftArrow.addEventListener("mouseover", stopSlider);
 leftArrow.addEventListener("mouseout", startSlider);
 
-buttons.forEach((button, i) => {
+sliderButtons.forEach((button, i) => {
   button.addEventListener("click", () => {
     slider.style.transform = `translateX(-${sliderWidth * i}px)`;
     imageNumber = i + 1;
