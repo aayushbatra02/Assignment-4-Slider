@@ -2,13 +2,13 @@ const imageSlider = document.getElementById("image-slider");
 const leftArrowButton = document.getElementById("left-arrow-button");
 const rightArrowButton = document.getElementById("right-arrow-button");
 const images = document.querySelectorAll(".image");
-const dotContainer = document.getElementById("dot-container");
+const dotButtonContainer = document.getElementById("dot-button-container");
 
 //create buttons
 for (let i = 0; i < images.length; i++) {
   const button = document.createElement("button");
   button.classList.add("dot-button");
-  dotContainer.appendChild(button);
+  dotButtonContainer.appendChild(button);
 }
 
 const dotButtons = document.querySelectorAll(".dot-button");
