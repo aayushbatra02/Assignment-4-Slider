@@ -66,7 +66,7 @@ const startSlider = () => {
       disableArrowButton();
       changeActiveButton();
     }
-  }, 2000);
+  }, 3000);
 };
 
 startSlider();
