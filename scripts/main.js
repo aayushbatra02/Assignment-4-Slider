@@ -110,21 +110,21 @@ const changeActiveDotButton = () => {
 let sliderInterval;
 
 const startSlider = () => {
-  // sliderInterval = setInterval(() => {
-  //   if (imageNumber < data.images.length) {
-  //     imageSlider.style.transform = `translateX(-${
-  //       imageSliderWidth * imageNumber
-  //     }vw)`;
-  //     imageNumber++;
-  //     changeArrowOpacity();
-  //     changeActiveDotButton();
-  //   } else {
-  //     imageSlider.style.transform = `translateX(0px)`;
-  //     imageNumber = 1;
-  //     changeArrowOpacity();
-  //     changeActiveDotButton();
-  //   }
-  // }, 3000);
+  sliderInterval = setInterval(() => {
+    if (imageNumber < data.images.length) {
+      imageSlider.style.transform = `translateX(-${
+        imageSliderWidth * imageNumber
+      }vw)`;
+      imageNumber++;
+      changeArrowOpacity();
+      changeActiveDotButton();
+    } else {
+      imageSlider.style.transform = `translateX(0px)`;
+      imageNumber = 1;
+      changeArrowOpacity();
+      changeActiveDotButton();
+    }
+  }, 3000);
 };
 
 startSlider();
