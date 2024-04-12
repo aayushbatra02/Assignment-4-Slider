@@ -1,8 +1,32 @@
 const imageSlider = document.getElementById("image-slider");
 const leftArrowButton = document.getElementById("left-arrow-button");
 const rightArrowButton = document.getElementById("right-arrow-button");
-const images = document.querySelectorAll(".image");
 const sliderDotContainer = document.getElementById("slider-dot-container");
+
+//JSON Data
+const data = {
+  "images": [
+    "/images/slider/image1.avif",
+    "/images/slider/image2.avif",
+    "/images/slider/image3.avif",
+    "/images/slider/image4.avif",
+    "/images/slider/image5.avif",
+    "/images/slider/image6.avif",
+    "/images/slider/image7.avif",
+    "/images/slider/image8.avif",
+    "/images/slider/image9.avif",
+  ],
+};
+
+//create Images
+for (let i = 0; i < data.images.length; i++) {
+  const image = document.createElement("img");
+  image.src = data.images[i];
+  image.classList.add("image");
+  imageSlider.appendChild(image);
+}
+
+const images = document.querySelectorAll(".image");
 
 //create buttons
 for (let i = 0; i < images.length; i++) {
@@ -13,12 +37,14 @@ for (let i = 0; i < images.length; i++) {
 
 const sliderDotButtons = document.querySelectorAll(".slider-dot-button");
 
-const imageSliderWidth = imageSlider.offsetWidth;
+const imageSliderWidth = 70;
 let imageNumber = 1;
 
 rightArrowButton.addEventListener("click", () => {
   if (imageNumber < images.length) {
-    imageSlider.style.transform = `translateX(-${imageSliderWidth * imageNumber}px)`;
+    imageSlider.style.transform = `translateX(-${
+      imageSliderWidth * imageNumber
+    }vw)`;
     imageNumber++;
     changeArrowOpacity();
     changeActiveDotButton();
@@ -29,7 +55,7 @@ leftArrowButton.addEventListener("click", () => {
   if (imageNumber > 1) {
     imageSlider.style.transform = `translateX(-${
       imageSliderWidth * (imageNumber - 2)
-    }px)`;
+    }vw)`;
     imageNumber--;
     changeArrowOpacity();
     changeActiveDotButton();
@@ -65,7 +91,9 @@ let sliderInterval;
 const startSlider = () => {
   sliderInterval = setInterval(() => {
     if (imageNumber < images.length) {
-      imageSlider.style.transform = `translateX(-${imageSliderWidth * imageNumber}px)`;
+      imageSlider.style.transform = `translateX(-${
+        imageSliderWidth * imageNumber
+      }vw)`;
       imageNumber++;
       changeArrowOpacity();
       changeActiveDotButton();
@@ -93,7 +121,7 @@ leftArrowButton.addEventListener("mouseout", startSlider);
 
 sliderDotButtons.forEach((button, i) => {
   button.addEventListener("click", () => {
-    imageSlider.style.transform = `translateX(-${imageSliderWidth * i}px)`;
+    imageSlider.style.transform = `translateX(-${imageSliderWidth * i}vw)`;
     imageNumber = i + 1;
     changeArrowOpacity();
     changeActiveDotButton();
