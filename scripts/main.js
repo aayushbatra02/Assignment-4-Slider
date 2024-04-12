@@ -138,7 +138,7 @@ rightArrowButton.addEventListener("mouseout", startSlider);
 leftArrowButton.addEventListener("mouseover", stopSlider);
 leftArrowButton.addEventListener("mouseout", startSlider);
 
-const addClickOnSliderButtons = () => {
+const addClickOnSliderDotButtons = () => {
   sliderDotButtons.forEach((button, i) => {
     button.addEventListener("click", () => {
       imageSlider.style.transform = `translateX(-${imageSliderWidth * i}vw)`;
@@ -151,11 +151,11 @@ const addClickOnSliderButtons = () => {
   });
 };
 
-addClickOnSliderButtons();
+addClickOnSliderDotButtons();
 
 addSlideButton.addEventListener("click", () => {
   const url = prompt("Add Image URL");
-  if (url) {
+  if (url && url.trim() !== "") {
     data.images.push(url);
     const image = document.createElement("img");
     image.src = url;
@@ -165,13 +165,12 @@ addSlideButton.addEventListener("click", () => {
     button.classList.add("slider-dot-button");
     sliderDotContainer.appendChild(button);
     sliderDotButtons = document.querySelectorAll(".slider-dot-button");
-    addClickOnSliderButtons();
+    addClickOnSliderDotButtons();
   }
 });
 
 deleteSlideButton.addEventListener("click", () => {
   confirmationModal.style.display = "flex";
-  console.log(imageNumber);
   if (imageNumber === data.images.length) {
     cantDeleteMessage.style.display = "block";
   } else {
@@ -180,19 +179,19 @@ deleteSlideButton.addEventListener("click", () => {
   stopSlider();
 });
 
-const hideDialogueBox = () => {
+const hideModal = () => {
   confirmationModal.style.display = "none";
   cantDeleteMessage.style.display = "none";
   deleteMessage.style.display = "none";
 };
 
 cancelButton.addEventListener("click", () => {
-  hideDialogueBox();
+  hideModal();
   startSlider();
 });
 
 confirmationModal.addEventListener("click", () => {
-  hideDialogueBox();
+  hideModal();
   startSlider();
 });
 
@@ -204,14 +203,12 @@ confirmationMessage.addEventListener("click", (e) => {
 confirmDeleteSlideButton.addEventListener("click", () => {
   data.images[imageNumber - 1] = null;
   data.images = data.images.filter((image) => image);
-  console.log(data.images);
   const images = document.querySelectorAll(".image");
-  console.log(images);
   imageSlider.removeChild(images[imageNumber - 1]);
   sliderDotContainer.removeChild(sliderDotButtons[imageNumber - 1]);
   sliderDotButtons = document.querySelectorAll(".slider-dot-button");
-  addClickOnSliderButtons();
-  hideDialogueBox();
+  addClickOnSliderDotButtons();
+  hideModal();
   changeActiveDotButton();
   startSlider();
 });
