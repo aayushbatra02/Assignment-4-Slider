@@ -26,10 +26,10 @@ for (let i = 0; i < data.images.length; i++) {
   imageSlider.appendChild(image);
 }
 
-const images = document.querySelectorAll(".image");
+// const images = document.querySelectorAll(".image");
 
 //create buttons
-for (let i = 0; i < images.length; i++) {
+for (let i = 0; i < data.images.length; i++) {
   const button = document.createElement("button");
   button.classList.add("slider-dot-button");
   sliderDotContainer.appendChild(button);
@@ -41,7 +41,7 @@ const imageSliderWidth = 70;
 let imageNumber = 1;
 
 rightArrowButton.addEventListener("click", () => {
-  if (imageNumber < images.length) {
+  if (imageNumber < data.images.length) {
     imageSlider.style.transform = `translateX(-${
       imageSliderWidth * imageNumber
     }vw)`;
@@ -63,7 +63,7 @@ leftArrowButton.addEventListener("click", () => {
 });
 
 const changeArrowOpacity = () => {
-  if (imageNumber === images.length) {
+  if (imageNumber === data.images.length) {
     rightArrowButton.style.opacity = 0.3;
   } else {
     rightArrowButton.style.opacity = 1;
@@ -90,7 +90,7 @@ let sliderInterval;
 
 const startSlider = () => {
   sliderInterval = setInterval(() => {
-    if (imageNumber < images.length) {
+    if (imageNumber < data.images.length) {
       imageSlider.style.transform = `translateX(-${
         imageSliderWidth * imageNumber
       }vw)`;
@@ -112,8 +112,6 @@ const stopSlider = () => {
   clearInterval(sliderInterval);
 };
 
-imageSlider.addEventListener("mouseover", stopSlider);
-imageSlider.addEventListener("mouseout", startSlider);
 rightArrowButton.addEventListener("mouseover", stopSlider);
 rightArrowButton.addEventListener("mouseout", startSlider);
 leftArrowButton.addEventListener("mouseover", stopSlider);
