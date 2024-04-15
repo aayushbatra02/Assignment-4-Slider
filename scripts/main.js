@@ -54,7 +54,7 @@ const imageSliderWidth = 70;
 let imageNumber = 1;
 
 const addClickToRightArrowButton = () => {
-  rightArrowButton.addEventListener("click", () => {
+  rightArrowButton.onclick = () => {
     if (imageNumber < data.images.length) {
       imageSlider.style.transform = `translateX(-${
         imageSliderWidth * imageNumber
@@ -63,13 +63,13 @@ const addClickToRightArrowButton = () => {
       changeArrowOpacity();
       changeActiveDotButton();
     }
-  });
+  };
 };
 
 addClickToRightArrowButton();
 
 const addClickToLeftArrowButton = () => {
-  leftArrowButton.addEventListener("click", () => {
+  leftArrowButton.onclick = () => {
     if (imageNumber > 1) {
       imageSlider.style.transform = `translateX(-${
         imageSliderWidth * (imageNumber - 2)
@@ -78,7 +78,7 @@ const addClickToLeftArrowButton = () => {
       changeArrowOpacity();
       changeActiveDotButton();
     }
-  });
+  };
 };
 
 addClickToLeftArrowButton();
@@ -133,29 +133,42 @@ const stopSlider = () => {
   clearInterval(sliderInterval);
 };
 
-rightArrowButton.addEventListener("mouseover", stopSlider);
-rightArrowButton.addEventListener("mouseout", startSlider);
-leftArrowButton.addEventListener("mouseover", stopSlider);
-leftArrowButton.addEventListener("mouseout", startSlider);
+rightArrowButton.onmouseover = stopSlider;
+rightArrowButton.onmouseout = startSlider;
+leftArrowButton.onmouseover = stopSlider;
+leftArrowButton.onmouseout = startSlider;
 
 const addClickOnSliderDotButtons = () => {
   sliderDotButtons.forEach((button, i) => {
-    button.addEventListener("click", () => {
+    button.onclick = () => {
       imageSlider.style.transform = `translateX(-${imageSliderWidth * i}vw)`;
       imageNumber = i + 1;
       changeArrowOpacity();
       changeActiveDotButton();
-    });
-    button.addEventListener("mouseover", stopSlider);
-    button.addEventListener("mouseout", startSlider);
+    };
+    button.onmouseover = stopSlider;
+    button.onmouseout = startSlider;
   });
 };
 
 addClickOnSliderDotButtons();
 
-addSlideButton.addEventListener("click", () => {
+const checkImage = async (url) => {
+  url = url.trim();
+  if (url) {
+    const res = await fetch(url);
+    if (res.status === 200) {
+      return true;
+    }
+  }
+  return false;
+};
+
+addSlideButton.onclick = async () => {
+  stopSlider();
   const url = prompt("Add Image URL");
-  if (url && url.trim() !== "") {
+  const verifiedUrl = await checkImage(url);
+  if (verifiedUrl) {
     data.images.push(url);
     const image = document.createElement("img");
     image.src = url;
@@ -167,17 +180,18 @@ addSlideButton.addEventListener("click", () => {
     sliderDotButtons = document.querySelectorAll(".slider-dot-button");
     addClickOnSliderDotButtons();
   }
-});
+  startSlider();
+};
 
-deleteSlideButton.addEventListener("click", () => {
+deleteSlideButton.onclick = () => {
   confirmationModal.style.display = "flex";
-  if (imageNumber === data.images.length) {
+  if (data.images.length === 1) {
     cantDeleteMessage.style.display = "block";
   } else {
     deleteMessage.style.display = "block";
   }
   stopSlider();
-});
+};
 
 const hideModal = () => {
   confirmationModal.style.display = "none";
@@ -185,30 +199,35 @@ const hideModal = () => {
   deleteMessage.style.display = "none";
 };
 
-cancelButton.addEventListener("click", () => {
+cancelButton.onclick = () => {
   hideModal();
   startSlider();
-});
+};
 
-confirmationModal.addEventListener("click", () => {
+confirmationModal.onclick = () => {
   hideModal();
   startSlider();
-});
+};
 
-confirmationMessage.addEventListener("click", (e) => {
+confirmationMessage.onclick = (e) => {
   //to avoid closing of modal container on click of message box
   e.stopPropagation();
-});
+};
 
-confirmDeleteSlideButton.addEventListener("click", () => {
+confirmDeleteSlideButton.onclick = () => {
   data.images[imageNumber - 1] = null;
   data.images = data.images.filter((image) => image);
   const images = document.querySelectorAll(".image");
   imageSlider.removeChild(images[imageNumber - 1]);
   sliderDotContainer.removeChild(sliderDotButtons[imageNumber - 1]);
   sliderDotButtons = document.querySelectorAll(".slider-dot-button");
+  if (imageNumber === data.images.length + 1) {
+    console.log("here");
+    imageNumber = 1;
+    imageSlider.style.transform = `translateX(0vw)`;
+  }
   addClickOnSliderDotButtons();
   hideModal();
   changeActiveDotButton();
   startSlider();
-});
+};
