@@ -154,7 +154,7 @@ const addClickOnSliderDotButtons = () => {
 
 addClickOnSliderDotButtons();
 
-const checkImage = async (url) => {
+const verifyImageURL = async (url) => {
   url = url?.trim();
   if (url) {
     try {
@@ -174,7 +174,7 @@ const checkImage = async (url) => {
 addSlideButton.onclick = async () => {
   stopSlider();
   const url = prompt("Add Image URL");
-  const verifiedUrl = await checkImage(url);
+  const verifiedUrl = await verifyImageURL(url);
   if (verifiedUrl) {
     data.images.push(url);
     const image = document.createElement("img");
