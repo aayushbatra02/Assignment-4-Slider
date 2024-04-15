@@ -129,7 +129,7 @@ button {
 }
 
 #cant-delete-message,
-#delete-message {
+#delete-message, #invalid-url-message {
   display: none;
 }
 

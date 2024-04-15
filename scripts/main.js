@@ -12,6 +12,7 @@ const confirmationMessage = document.getElementById("confirmation-message");
 const cancelButton = document.getElementById("cancel-button");
 const cantDeleteMessage = document.getElementById("cant-delete-message");
 const deleteMessage = document.getElementById("delete-message");
+const inavlidUrlMessage = document.getElementById("invalid-url-message");
 
 //JSON Data
 const data = {
@@ -154,11 +155,17 @@ const addClickOnSliderDotButtons = () => {
 addClickOnSliderDotButtons();
 
 const checkImage = async (url) => {
-  url = url.trim();
+  url = url?.trim();
   if (url) {
-    const res = await fetch(url);
-    if (res.status === 200) {
-      return true;
+    try {
+      const res = await fetch(url);
+      if (res.status === 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      throw e;
     }
   }
   return false;
@@ -179,6 +186,9 @@ addSlideButton.onclick = async () => {
     sliderDotContainer.appendChild(button);
     sliderDotButtons = document.querySelectorAll(".slider-dot-button");
     addClickOnSliderDotButtons();
+  } else if (url !== null) {
+    confirmationModal.style.display = "flex";
+    inavlidUrlMessage.style.display = "block";
   }
   startSlider();
 };
@@ -197,6 +207,7 @@ const hideModal = () => {
   confirmationModal.style.display = "none";
   cantDeleteMessage.style.display = "none";
   deleteMessage.style.display = "none";
+  inavlidUrlMessage.style.display = "none";
 };
 
 cancelButton.onclick = () => {
@@ -222,7 +233,6 @@ confirmDeleteSlideButton.onclick = () => {
   sliderDotContainer.removeChild(sliderDotButtons[imageNumber - 1]);
   sliderDotButtons = document.querySelectorAll(".slider-dot-button");
   if (imageNumber === data.images.length + 1) {
-    console.log("here");
     imageNumber = 1;
     imageSlider.style.transform = `translateX(0vw)`;
   }
