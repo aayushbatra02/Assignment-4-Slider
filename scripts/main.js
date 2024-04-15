@@ -111,6 +111,7 @@ const changeActiveDotButton = () => {
 let sliderInterval;
 
 const startSlider = () => {
+  console.log("animation started")
   sliderInterval = setInterval(() => {
     if (imageNumber < data.images.length) {
       imageSlider.style.transform = `translateX(-${
@@ -131,6 +132,7 @@ const startSlider = () => {
 startSlider();
 
 const stopSlider = () => {
+  console.log("animation stopped");
   clearInterval(sliderInterval);
 };
 
@@ -186,11 +188,13 @@ addSlideButton.onclick = async () => {
     sliderDotContainer.appendChild(button);
     sliderDotButtons = document.querySelectorAll(".slider-dot-button");
     addClickOnSliderDotButtons();
+    startSlider();
   } else if (url !== null) {
     confirmationModal.style.display = "flex";
     inavlidUrlMessage.style.display = "block";
+  } else {
+    startSlider();
   }
-  startSlider();
 };
 
 deleteSlideButton.onclick = () => {
