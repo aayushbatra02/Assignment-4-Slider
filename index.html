@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+  </head>
+  <body>
+    <div id="slider-container">
+      <div id="slider-frame">
+        <button id="left-arrow-button">
+          <img src="/images/icons/left-arrow.png" />
+        </button>
+        <div id="image-slider"></div>
+        <button id="right-arrow-button">
+          <img src="/images/icons/right-arrow.png" />
+        </button>
+      </div>
+      <div id="slider-dot-container"></div>
+      <div id="button-container">
+        <button id="add-slide-button">ADD SLIDE</button>
+        <button id="delete-slide-button">DELETE SLIDE</button>
+        <div id="confirmation-modal">
+          <div id="confirmation-message">
+            <div id="invalid-url-message">
+              <h2>Invalid URL</h2>
+            </div>
+            <div id="cant-delete-message">
+              <h2>Cant Delete Last Slide</h2>
+            </div>
+            <div id="delete-message">
+              <h2>Are You Sure You Want To Delete This Image ?</h2>
+              <div id="button-container">
+                <button id="confirm-delete-slide-button">Confirm</button>
+              </div>
+            </div>
+            <div id="cancel-button"><i class="fa-solid fa-x"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/89e9165f8b.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
