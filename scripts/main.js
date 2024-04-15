@@ -111,7 +111,6 @@ const changeActiveDotButton = () => {
 let sliderInterval;
 
 const startSlider = () => {
-  console.log("animation started")
   sliderInterval = setInterval(() => {
     if (imageNumber < data.images.length) {
       imageSlider.style.transform = `translateX(-${
@@ -132,7 +131,6 @@ const startSlider = () => {
 startSlider();
 
 const stopSlider = () => {
-  console.log("animation stopped");
   clearInterval(sliderInterval);
 };
 
